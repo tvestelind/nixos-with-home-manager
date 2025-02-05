@@ -2,27 +2,34 @@
   description = "A simple NixOS flake";
 
   inputs = {
+    # Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
+  outputs = { 
+    self, 
+    nixpkgs, 
+    home-manager, 
+    ... 
+  } @ inputs: let
+    inherit (self) outputs;
+  in {
     nixosConfigurations = {
       tvestelind-x280 = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/tvestelind-x280/configuration.nix
-          ./modules
-          inputs.home-manager.nixosModules.home-manager
-        ];
+        specialArgs = {inherit inputs outputs;};
+        modules = [ ./nixos/configuration.nix ];
+      };
+    };
+
+    homeConfigurations = {
+      "tvestelind@tvestelind-x280" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [ ./home-manager/home.nix ];
       };
     };
   };

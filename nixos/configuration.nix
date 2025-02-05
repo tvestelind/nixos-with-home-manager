@@ -1,15 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, inputs,  ... }:
-
-{
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-    ];
+{ 
+  config, 
+  lib, 
+  pkgs, 
+  inputs,  
+  ... 
+}: {
+  imports = [ ./hardware-configuration.nix ];
 
   # Use Grub2 as bootloader
   boot = {
@@ -91,13 +90,6 @@
   users.users.tvestelind = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "networkmanager" ];
-  };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "tvestelind" = import ./home.nix;
-    };
   };
 
   # List packages installed in system profile. To search, run:
