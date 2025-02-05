@@ -6,9 +6,13 @@
   lib, 
   pkgs, 
   inputs,  
+  outputs,
   ... 
 }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ 
+    ./hardware-configuration.nix 
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   # Use Grub2 as bootloader
   boot = {
@@ -86,10 +90,21 @@
     };
   };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+       tvestelind = import ../home-manager/home.nix;
+    };
+  };
+
+  # Zsh must be enabled here as well as for Home Manager
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tvestelind = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "networkmanager" ];
+    shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
