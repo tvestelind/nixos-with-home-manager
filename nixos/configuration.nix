@@ -73,7 +73,6 @@
           i3status
           i3lock
           i3blocks
-          rxvt-unicode-unwrapped
         ];
       };
     };
