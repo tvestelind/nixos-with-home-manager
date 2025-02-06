@@ -127,6 +127,7 @@
   environment = {
     pathsToLink = [ "/libexec" ]; # Used to make i3blocks work
     systemPackages = with pkgs; [
+      grobi
       pavucontrol
     ];
   };
