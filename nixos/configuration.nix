@@ -66,9 +66,6 @@
         options = "ctrl:nocaps,compose:lwin";
 	layout = "se";
       };
-      desktopManager = {
-        xterm.enable = false;
-      };
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
