@@ -51,7 +51,14 @@
     thermald.enable = true;
     printing.enable = true;
     blueman.enable = true;
-    displayManager.defaultSession = "none+i3";
+    displayManager = {
+      sddm = {
+        enable = true;
+        theme = "catppuccin-mocha";
+	package = pkgs.kdePackages.sddm;
+      };
+      defaultSession = "none+i3";
+    };
     xserver = {
       enable = true;
       xkb = {
@@ -129,6 +136,9 @@
     systemPackages = with pkgs; [
       grobi
       pavucontrol
+      (pkgs.catppuccin-sddm.override {
+        flavor = "mocha";
+      })
     ];
   };
 
