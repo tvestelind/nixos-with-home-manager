@@ -118,15 +118,7 @@
   environment = {
     pathsToLink = [ "/libexec" ]; # Used to make i3blocks work
     systemPackages = with pkgs; [
-      autorandr
-      firefox
-      jq
-      lsof
       pavucontrol
-      pciutils
-      vim
-      wget
-      git
     ];
   };
 

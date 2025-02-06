@@ -6,6 +6,9 @@
     homeDirectory = "/home/tvestelind";
     packages = with pkgs; [
       liberation_ttf
+      lsof
+      wget
+      pciutils
     ];
     file.".ssh/allowed_signers".text = ''
       tomas.vestelind@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7
@@ -14,6 +17,8 @@
 
   programs = {
     home-manager.enable = true;
+    firefox.enable = true;
+    jq.enable = true;
     zsh = {
       enable = true;
       autocd = true;
