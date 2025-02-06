@@ -116,7 +116,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    variables.EDITOR = "urxvt";
     pathsToLink = [ "/libexec" ]; # Used to make i3blocks work
     systemPackages = with pkgs; [
       autorandr
