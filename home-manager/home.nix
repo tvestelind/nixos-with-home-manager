@@ -84,6 +84,10 @@
         user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7";
       };
     };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
 
   services = {
