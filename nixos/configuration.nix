@@ -48,6 +48,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services = {
+    thermald.enable = true;
     printing.enable = true;
     blueman.enable = true;
     displayManager.defaultSession = "none+i3";
