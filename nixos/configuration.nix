@@ -97,7 +97,14 @@
   };
 
   # Zsh must be enabled here as well as for Home Manager
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "tvestelind" ];
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tvestelind = {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home = {
@@ -9,55 +9,85 @@
     ];
   };
 
-  programs.home-manager.enable = true;
-  programs.zsh = {
-    enable = true;
-    autocd = true;
-    oh-my-zsh = {
+  programs = {
+    home-manager.enable = true;
+    zsh = {
       enable = true;
-      theme = "robbyrussell";
-      plugins = [
-        "git"
-        "sudo"
-        "colored-man-pages"
-        "colorize"
-      ];
+      autocd = true;
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+          "sudo"
+          "colored-man-pages"
+          "colorize"
+        ];
+      };
+    };
+    urxvt = {
+      enable = true;
+      fonts = [ "xft:Liberation Mono:pixelsize=14:antialias=true" ];
+      scroll.bar.enable = false;
+      extraConfig = {
+        background = "#1E1E2E";
+        foreground = "#CDD6F4";
+        cursorColor = "#F5E0DC";
+        
+        color0 = "#45475A";
+        color8 = "#585B70";
+        color1 = "#F38BA8";
+        color9 = "#F38BA8";
+        color2 = "#A6E3A1";
+        color10 = "#A6E3A1";
+        color3 = "#F9E2AF";
+        color11 = "#F9E2AF";
+        color4 = "#89B4FA";
+        color12 = "#89B4FA";
+        color5 = "#F5C2E7";
+        color13 = "#F5C2E7";
+        color6 = "#94E2D5";
+        color14 = "#94E2D5";
+        color7 = "#BAC2DE";
+        color15 = "#A6ADC8";
+
+        mouseWheelScrollPage = "true";
+        selectToClipboard = "true";
+        letterSpace = "0";
+        lineSpace = "0";
+        cursorUnderline = "false";
+      };
+    };
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        Host *
+            IdentityAgent "~/.1password/agent.sock"
+      '';
+    };
+    git = {
+      enable = true;
+      extraConfig = {
+        gpg = {
+          format = "ssh";
+        };
+        "gpg \"ssh\"" = {
+          program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+        };
+        commit = {
+          gpgsign = true;
+        };
+
+        user = {
+          signingKey = "...";
+        };
+      };
     };
   };
-  programs.urxvt = {
-    enable = true;
-    fonts = [ "xft:Liberation Mono:pixelsize=14:antialias=true" ];
-    scroll.bar.enable = false;
-    extraConfig = {
-      background = "#1E1E2E";
-      foreground = "#CDD6F4";
-      cursorColor = "#F5E0DC";
-      
-      color0 = "#45475A";
-      color8 = "#585B70";
-      color1 = "#F38BA8";
-      color9 = "#F38BA8";
-      color2 = "#A6E3A1";
-      color10 = "#A6E3A1";
-      color3 = "#F9E2AF";
-      color11 = "#F9E2AF";
-      color4 = "#89B4FA";
-      color12 = "#89B4FA";
-      color5 = "#F5C2E7";
-      color13 = "#F5C2E7";
-      color6 = "#94E2D5";
-      color14 = "#94E2D5";
-      color7 = "#BAC2DE";
-      color15 = "#A6ADC8";
 
-      mouseWheelScrollPage = "true";
-      selectToClipboard = "true";
-      letterSpace = "0";
-      lineSpace = "0";
-      cursorUnderline = "false";
-    };
+  services = {
+    ssh-agent.enable = true;
   };
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
