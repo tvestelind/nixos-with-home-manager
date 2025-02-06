@@ -34,7 +34,7 @@
   };
  
   networking = {
-    hostName = "tvestelind-x280";
+    hostName = "tp-x280";
     networkmanager = { 
       enable = true;
       wifi.powersave = true;

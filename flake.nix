@@ -19,7 +19,7 @@
     inherit (self) outputs;
   in {
     nixosConfigurations = {
-      tvestelind-x280 = nixpkgs.lib.nixosSystem {
+      tp-x280 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [ 
           ./nixos/configuration.nix
