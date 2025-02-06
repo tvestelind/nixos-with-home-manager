@@ -7,6 +7,9 @@
     packages = with pkgs; [
       liberation_ttf
     ];
+    file.".ssh/allowed_signers".text = ''
+      tomas.vestelind@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7
+    '';
   };
 
   programs = {
@@ -67,20 +70,18 @@
     };
     git = {
       enable = true;
+      userName = "Tomas Vestelind";
+      userEmail = "tomas.vestelind@gmail.com";
       extraConfig = {
         gpg = {
           format = "ssh";
+          ssh.allowedSignersFile = "~/.ssh/allowed_signers";
         };
         "gpg \"ssh\"" = {
           program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
         };
-        commit = {
-          gpgsign = true;
-        };
-
-        user = {
-          signingKey = "...";
-        };
+        commit.gpgsign = true;
+        user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7";
       };
     };
   };
@@ -88,6 +89,7 @@
   services = {
     ssh-agent.enable = true;
   };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
