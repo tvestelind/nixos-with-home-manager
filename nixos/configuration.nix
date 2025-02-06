@@ -41,6 +41,7 @@
     };
   };
     
+  powerManagement.enable = true;
   time.timeZone = "Europe/Stockholm";
 
   console.useXkbConfig = true;
