@@ -43,7 +43,6 @@
     
   powerManagement.enable = true;
   time.timeZone = "Europe/Stockholm";
-
   console.useXkbConfig = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -52,21 +51,16 @@
     printing.enable = true;
     blueman.enable = true;
     displayManager.defaultSession = "none+i3";
-
     xserver = {
       enable = true;
-
       xkb = {
         variant = "dvorak_a5";
         options = "ctrl:nocaps,compose:lwin";
 	layout = "se";
       };
-
       desktopManager = {
         xterm.enable = false;
       };
-
-
       windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [
