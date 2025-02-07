@@ -51,6 +51,7 @@
     thermald.enable = true;
     printing.enable = true;
     blueman.enable = true;
+    autorandr.enable = true;
     displayManager = {
       sddm = {
         enable = true;
@@ -131,7 +132,7 @@
   environment = {
     pathsToLink = [ "/libexec" ]; # Used to make i3blocks work
     systemPackages = with pkgs; [
-      grobi
+      autorandr
       pavucontrol
       (pkgs.catppuccin-sddm.override {
         flavor = "mocha";
