@@ -52,6 +52,7 @@
     printing.enable = true;
     blueman.enable = true;
     autorandr.enable = true;
+    gnome.gnome-keyring.enable = true;
     displayManager = {
       sddm = {
         enable = true;
@@ -84,6 +85,8 @@
       };
     };
   };
+
+  security.pam.services.sddm.enableGnomeKeyring = true;
   
   hardware = {
     bluetooth = {
