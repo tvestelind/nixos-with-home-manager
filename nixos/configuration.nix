@@ -54,17 +54,6 @@
     autorandr.enable = true;
     gnome.gnome-keyring.enable = true;
     displayManager = {
-      sddm = {
-        enable = true;
-        theme = "sddm-astronaut-theme";
-	package = pkgs.kdePackages.sddm;
-	# Workaround to get theme to work
-	extraPackages = with pkgs; [
-            kdePackages.qtmultimedia
-            kdePackages.qtsvg
-            kdePackages.qtvirtualkeyboard
-        ];
-      };
       defaultSession = "none+i3";
     };
     xserver = {
@@ -83,10 +72,11 @@
           i3blocks
         ];
       };
+      displayManager.lightdm.enable = true;
     };
   };
 
-  security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
   
   hardware = {
     bluetooth = {
@@ -143,7 +133,6 @@
     systemPackages = with pkgs; [
       autorandr
       pavucontrol
-      sddm-astronaut
     ];
   };
 
