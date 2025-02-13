@@ -55,8 +55,14 @@
     displayManager = {
       sddm = {
         enable = true;
-        theme = "catppuccin-mocha";
+        theme = "sddm-astronaut-theme";
 	package = pkgs.kdePackages.sddm;
+	# Workaround to get theme to work
+	extraPackages = with pkgs; [
+            kdePackages.qtmultimedia
+            kdePackages.qtsvg
+            kdePackages.qtvirtualkeyboard
+        ];
       };
       defaultSession = "none+i3";
     };
@@ -134,9 +140,7 @@
     systemPackages = with pkgs; [
       autorandr
       pavucontrol
-      (pkgs.catppuccin-sddm.override {
-        flavor = "mocha";
-      })
+      sddm-astronaut
     ];
   };
 
