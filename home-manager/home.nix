@@ -46,6 +46,7 @@
     firefox.enable = true;
     jq.enable = true;
     feh.enable = true;
+    autorandr.enable = true;
     zsh = {
       enable = true;
       autocd = true;
@@ -131,6 +132,7 @@
 
   services = {
     ssh-agent.enable = true;
+    autorandr.enable = true;
   };
 
   # This value determines the Home Manager release that your configuration is

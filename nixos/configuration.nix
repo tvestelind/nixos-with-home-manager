@@ -51,7 +51,6 @@
     thermald.enable = true;
     printing.enable = true;
     blueman.enable = true;
-    autorandr.enable = true;
     gnome.gnome-keyring.enable = true;
     displayManager = {
       defaultSession = "none+i3";
