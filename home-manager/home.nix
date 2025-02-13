@@ -9,16 +9,43 @@
       lsof
       wget
       pciutils
+      catppuccin-cursors
     ];
     file.".ssh/allowed_signers".text = ''
       tomas.vestelind@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7
     '';
   };
 
+  stylix = {
+    autoEnable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    polarity = "dark";
+    cursor = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+      size = 16;
+    };
+    fonts = {
+      monospace = {
+        package = pkgs.liberation_ttf;
+        name = "Mono";
+      };
+      sansSerif = {
+        package = pkgs.liberation_ttf;
+        name = "Sans";
+      };
+      serif = {
+        package = pkgs.liberation_ttf;
+        name = "Serif";
+      };
+    };
+  };
+
   programs = {
     home-manager.enable = true;
     firefox.enable = true;
     jq.enable = true;
+    feh.enable = true;
     zsh = {
       enable = true;
       autocd = true;

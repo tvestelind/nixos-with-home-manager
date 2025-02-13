@@ -89,11 +89,10 @@
     };
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-       tvestelind = import ../home-manager/home.nix;
-    };
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    targets.lightdm.enable = true;
   };
 
   # Zsh must be enabled here as well as for Home Manager

@@ -11,6 +11,7 @@
       url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = { 
@@ -18,6 +19,7 @@
     nixpkgs, 
     home-manager, 
     auto-cpufreq,
+    stylix,
     ... 
   } @ inputs: let
     inherit (self) outputs;
@@ -28,10 +30,14 @@
         modules = [ 
           ./nixos/configuration.nix
 	  auto-cpufreq.nixosModules.default
+          stylix.nixosModules.stylix
           {
             nixpkgs.config.allowUnfree = true;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager = {
+	      useGlobalPkgs = true;
+              useUserPackages = true;
+	      users.tvestelind = import ./home-manager/home.nix;
+	    };
           }
         ];
       };
