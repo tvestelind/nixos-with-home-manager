@@ -105,6 +105,12 @@
       enable = true;
       userName = "Tomas Vestelind";
       userEmail = "tomas.vestelind@gmail.com";
+      aliases = {
+        co = "checkout";
+        st = "status";
+        d = "diff";
+        br = "branch";
+      };
       extraConfig = {
         gpg = {
           format = "ssh";
