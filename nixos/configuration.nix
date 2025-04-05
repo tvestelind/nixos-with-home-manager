@@ -52,9 +52,7 @@
     printing.enable = true;
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
-    displayManager = {
-      defaultSession = "none+i3";
-    };
+    displayManager.defaultSession = "none+i3";
     xserver = {
       enable = true;
       xkb = {
@@ -62,16 +60,8 @@
         options = "ctrl:nocaps,compose:lwin";
 	layout = "se";
       };
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status
-          i3lock
-          i3blocks
-        ];
-      };
       displayManager.lightdm.enable = true;
+      windowManager.i3.enable = true;
     };
   };
 

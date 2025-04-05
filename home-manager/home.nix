@@ -10,10 +10,15 @@
       wget
       pciutils
       catppuccin-cursors
+      i3
     ];
     file.".ssh/allowed_signers".text = ''
       tomas.vestelind@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPzf+MfJn9DZXisWYkjayHecitjigUitNQDxzjvKTV7
     '';
+  };
+
+  xsession.windowManager.i3 = {
+    enable = true;
   };
 
   stylix = {
@@ -42,6 +47,18 @@
   };
 
   programs = {
+    i3blocks = {
+      enable = true;
+      bars = {
+        top = {
+          title = {
+                interval = "persist";
+                command = "xtitle -s";
+          };
+        };
+      };
+    };
+    i3status.enable = true;
     home-manager.enable = true;
     firefox.enable = true;
     jq.enable = true;
@@ -144,6 +161,7 @@
   services = {
     ssh-agent.enable = true;
     autorandr.enable = true;
+    flameshot.enable = true;
   };
 
   # This value determines the Home Manager release that your configuration is
