@@ -47,6 +47,7 @@
     jq.enable = true;
     feh.enable = true;
     autorandr.enable = true;
+    ripgrep.enable = true;
     hstr = {
       enable = true;
       enableZshIntegration = true;
