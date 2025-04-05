@@ -47,6 +47,10 @@
     jq.enable = true;
     feh.enable = true;
     autorandr.enable = true;
+    hstr = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zsh = {
       enable = true;
       autocd = true;
